@@ -3,7 +3,20 @@ const Pool = require("../config/db");
 const getAllRecipes = async () => {
     console.log("model getAllRecipes");
     return new Promise((resolve, reject) =>
-        Pool.query(`SELECT * FROM recipes`, (err, result) => {
+        Pool.query(`SELECT recipes.id, recipes.title, recipes.ingredients, recipes.photo, category.name AS category FROM recipes JOIN category ON recipes.category_id=category.id`, (err, result) => {
+            if (!err) {
+                return resolve(result);
+            } else {
+                reject(err);
+            }
+        })
+    );
+};
+
+const getRecipes = async () => {
+    console.log("model getAllRecipes");
+    return new Promise((resolve, reject) =>
+        Pool.query(`SELECT recipes.id, recipes.title, recipes.ingredients, recipes.photo, category.name AS category FROM recipes JOIN category ON recipes.category_id=category.id`, (err, result) => {
             if (!err) {
                 return resolve(result);
             } else {
@@ -16,7 +29,7 @@ const getAllRecipes = async () => {
 const getRecipeById = async (id) => {
     console.log("model getRecipeById");
     return new Promise((resolve, reject) =>
-        Pool.query(`SELECT * FROM recipes WHERE id=${id}`, (err, result) => {
+        Pool.query(`SELECT recipes.id, recipes.title, recipes.ingredients, recipes.photo, category.name AS category FROM recipes JOIN category ON recipes.category_id=category.id WHERE recipes.id=${id}`, (err, result) => {
             if (!err) {
                 return resolve(result);
             } else {
@@ -41,10 +54,10 @@ const deleteRecipeById = async (id) => {
 
 const postRecipe = async (data) => {
     console.log("model postRecipe");
-    let { title, content } = data;
+    let { title, ingredients, photo, category_id } = data;
     return new Promise((resolve, reject) =>
         Pool.query(
-            `INSERT INTO recipes (title, content) VALUES('${title}','${content}')`,
+            `INSERT INTO recipes (title, ingredients,photo,category_id) VALUES('${title}','${ingredients}','${photo}',${category_id})`,
             (err, result) => {
                 if (!err) {
                     return resolve(result);
@@ -58,10 +71,10 @@ const postRecipe = async (data) => {
 
 const putRecipe = async (data) => {
     console.log("model putRecipe");
-    let { id, title, content } = data;
+    let { id, title, ingredients, photo, category_id } = data;
     return new Promise((resolve, reject) =>
         Pool.query(
-            `UPDATE recipes SET title='${title}', content='${content}' WHERE id=${id}`,
+            `UPDATE recipes SET title='${title}', ingredients='${ingredients}',photo='${photo}',category_id=${category_id} WHERE id=${id}`,
             (err, result) => {
                 if (!err) {
                     return resolve(result);
@@ -73,10 +86,25 @@ const putRecipe = async (data) => {
     );
 };
 
+
+const getCategory = async () => {
+    console.log("model getCategory");
+    return new Promise((resolve, reject) =>
+        Pool.query(`SELECT * FROM category`, (err, result) => {
+            if (!err) {
+                return resolve(result);
+            } else {
+                reject(err);
+            }
+        })
+    );
+};
+
 module.exports = {
     getAllRecipes,
     postRecipe,
     putRecipe,
     getRecipeById,
     deleteRecipeById,
+    getCategory
 };

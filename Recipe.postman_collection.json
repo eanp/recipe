@@ -161,6 +161,23 @@
 			"response": []
 		},
 		{
+			"name": "category",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/category",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "recipe id",
 			"request": {
 				"method": "GET",
@@ -192,8 +209,20 @@
 							"type": "text"
 						},
 						{
-							"key": "content",
-							"value": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the ind",
+							"key": "ingredients",
+							"value": "kerupuk, cabai, air ",
+							"type": "text"
+						},
+						{
+							"key": "photo",
+							"value": "https://picsum.photos/200",
+							"description": "https://picsum.photos/200",
+							"type": "text"
+						},
+						{
+							"key": "category_id",
+							"value": "2",
+							"description": "1  = main couse | 2 = appetizer | 3 = dessert",
 							"type": "text"
 						}
 					]
@@ -225,8 +254,21 @@
 							"disabled": true
 						},
 						{
-							"key": "content",
+							"key": "ingredients",
 							"value": "nasi kebuli condet",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "photo",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "category_id",
+							"value": "2",
+							"description": "1  = main couse | 2 = appetizer | 3 = dessert",
 							"type": "text"
 						}
 					]
