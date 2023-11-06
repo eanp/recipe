@@ -21,6 +21,77 @@
 			"response": []
 		},
 		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "guest@recipe.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test1234",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "recipe member",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/register",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "member@recipe.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test1234",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "users",
 			"request": {
 				"method": "GET",
@@ -146,6 +217,16 @@
 		{
 			"name": "recipe",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMDRjZTY3MjItMGRiYS00MmIxLTliYzktYzdhMTJiNjBlMzQ2IiwiZW1haWwiOiJndWVzdEByZWNpcGUuY29tIiwidXNlcm5hbWUiOiJyZWNpcGUgbWVtYmVyIiwiaWF0IjoxNjk5MjQ0NDM3fQ.CLDMVAG-qvBGK1YcsNTkip2H9m1kvH5Dkf1noTYlY4k",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -155,6 +236,105 @@
 					],
 					"path": [
 						"recipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "recipe user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWI5ZDZiY2QtYmJmZC00YjJkLTliNWQtYWI4ZGZiYmQ0YmVkIiwiZW1haWwiOiJhZG1pbkByZWNpcGUuY29tIiwidXNlcm5hbWUiOiJhZG1pbiByZWNpcGUiLCJpYXQiOjE2OTkyNTI3MzF9.l6RORMkhrLEKAKV3auBHHfAHWDe5D-hw2eSoLRf9KG8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/recipe/my-recipe",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"recipe",
+						"my-recipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "recipe by user id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWI5ZDZiY2QtYmJmZC00YjJkLTliNWQtYWI4ZGZiYmQ0YmVkIiwiZW1haWwiOiJhZG1pbkByZWNpcGUuY29tIiwidXNlcm5hbWUiOiJhZG1pbiByZWNpcGUiLCJpYXQiOjE2OTkyNTI3MzF9.l6RORMkhrLEKAKV3auBHHfAHWDe5D-hw2eSoLRf9KG8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/recipe/user/1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"recipe",
+						"user",
+						"1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "recipe detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/recipe/detail?search=air&searchBy=ingredients&page=3&limit=3&sortBy=ASC",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"recipe",
+						"detail"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "air"
+						},
+						{
+							"key": "searchBy",
+							"value": "ingredients",
+							"description": "title | ingredients"
+						},
+						{
+							"key": "page",
+							"value": "3"
+						},
+						{
+							"key": "limit",
+							"value": "3"
+						},
+						{
+							"key": "sortBy",
+							"value": "ASC",
+							"description": "ASC | DESC"
+						}
 					]
 				}
 			},
@@ -198,6 +378,9 @@
 		{
 			"name": "recipe",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -242,6 +425,16 @@
 		{
 			"name": "recipe",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiZTEwMTZjYjctZDhjMC00ZDYyLTkxZTgtZDUwNjFiZTllZmI5IiwiZW1haWwiOiJtZW1iZXJAcmVjaXBlLmNvbSIsInVzZXJuYW1lIjoicmVjaXBlIG1lbWJlciIsImlhdCI6MTY5OTI1MzIxOX0.DIwWvjRYvzIaIht_BReoZQemuiUlki_JCUlyzm9D1Ok",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [],
 				"body": {
@@ -250,8 +443,7 @@
 						{
 							"key": "title",
 							"value": "nasi kebuli",
-							"type": "text",
-							"disabled": true
+							"type": "text"
 						},
 						{
 							"key": "ingredients",
@@ -267,20 +459,20 @@
 						},
 						{
 							"key": "category_id",
-							"value": "2",
+							"value": "1",
 							"description": "1  = main couse | 2 = appetizer | 3 = dessert",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "{{base_url}}/recipe/1",
+					"raw": "{{base_url}}/recipe/16",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"recipe",
-						"1"
+						"16"
 					]
 				}
 			},
@@ -289,6 +481,16 @@
 		{
 			"name": "recipe",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiZTEwMTZjYjctZDhjMC00ZDYyLTkxZTgtZDUwNjFiZTllZmI5IiwiZW1haWwiOiJtZW1iZXJAcmVjaXBlLmNvbSIsInVzZXJuYW1lIjoicmVjaXBlIG1lbWJlciIsImlhdCI6MTY5OTI1MzIxOX0.DIwWvjRYvzIaIht_BReoZQemuiUlki_JCUlyzm9D1Ok",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"body": {
@@ -302,13 +504,13 @@
 					]
 				},
 				"url": {
-					"raw": "{{base_url}}/recipe/4",
+					"raw": "{{base_url}}/recipe/16",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"recipe",
-						"4"
+						"16"
 					]
 				}
 			},

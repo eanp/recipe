@@ -56,3 +56,10 @@ INSERT INTO USERS(uuid,email,password,username) VALUES('1b9d6bcd-bbfd-4b2d-9b5d-
 
 
 SELECT * FROM users WHERE email='admin@recipe.com';
+
+
+ALTER TABLE recipes ADD COLUMN users_id VARCHAR;
+
+ALTER TABLE recipes ALTER COLUMN users_id SET NOT NULL;
+
+UPDATE recipes SET users_id='1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed' WHERE photo='https://picsum.photos/200';
