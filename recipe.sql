@@ -63,3 +63,15 @@ ALTER TABLE recipes ADD COLUMN users_id VARCHAR;
 ALTER TABLE recipes ALTER COLUMN users_id SET NOT NULL;
 
 UPDATE recipes SET users_id='1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed' WHERE photo='https://picsum.photos/200';
+
+CREATE TABLE event(
+	id SERIAL PRIMARY KEY,
+	recipes_id INT,
+	users_id VARCHAR,
+	status VARCHAR,
+	created_at TIMESTAMP DEFAULT NOW()
+);
+
+INSERT INTO event(recipes_id,users_id,status) VALUES(15,'1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed','bookmark')
+
+SELECT recipes.title, event.status FROM event JOIN recipes ON event.recipes_id = recipes.id WHERE event.users_id='1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed' AND event.status='like';

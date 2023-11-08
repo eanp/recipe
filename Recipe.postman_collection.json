@@ -379,42 +379,48 @@
 			"name": "recipe",
 			"request": {
 				"auth": {
-					"type": "noauth"
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiZTEwMTZjYjctZDhjMC00ZDYyLTkxZTgtZDUwNjFiZTllZmI5IiwiZW1haWwiOiJtZW1iZXJAcmVjaXBlLmNvbSIsInVzZXJuYW1lIjoicmVjaXBlIG1lbWJlciIsImlhdCI6MTY5OTI1MzIxOX0.DIwWvjRYvzIaIht_BReoZQemuiUlki_JCUlyzm9D1Ok",
+							"type": "string"
+						}
+					]
 				},
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/D:/lib/Downloads/Backend Intermediate - Tugas (1).pdf"
+						},
 						{
 							"key": "title",
-							"value": "seblak",
+							"value": "telur goreng",
 							"type": "text"
 						},
 						{
 							"key": "ingredients",
-							"value": "kerupuk, cabai, air ",
-							"type": "text"
-						},
-						{
-							"key": "photo",
-							"value": "https://picsum.photos/200",
-							"description": "https://picsum.photos/200",
+							"value": "telur, air, garam",
 							"type": "text"
 						},
 						{
 							"key": "category_id",
-							"value": "2",
-							"description": "1  = main couse | 2 = appetizer | 3 = dessert",
+							"value": "3",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "{{base_url}}/recipe",
+					"raw": "localhost:3000/recipe",
 					"host": [
-						"{{base_url}}"
+						"localhost"
 					],
+					"port": "3000",
 					"path": [
 						"recipe"
 					]
@@ -438,41 +444,29 @@
 				"method": "PUT",
 				"header": [],
 				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "title",
-							"value": "nasi kebuli",
-							"type": "text"
-						},
-						{
-							"key": "ingredients",
-							"value": "nasi kebuli condet",
-							"type": "text",
-							"disabled": true
-						},
+					"mode": "formdata",
+					"formdata": [
 						{
 							"key": "photo",
-							"value": "",
-							"type": "text",
+							"type": "file",
+							"src": "/D:/lib/Downloads/pxvllu0m1ixi0n6de2uj.jpg",
 							"disabled": true
 						},
 						{
 							"key": "category_id",
-							"value": "1",
-							"description": "1  = main couse | 2 = appetizer | 3 = dessert",
+							"value": "2",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "{{base_url}}/recipe/16",
+					"raw": "{{base_url}}/recipe/17",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"recipe",
-						"16"
+						"17"
 					]
 				}
 			},
